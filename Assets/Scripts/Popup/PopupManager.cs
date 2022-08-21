@@ -5,17 +5,15 @@ using UnityEngine.UI;
 
 public class PopupManager : MonoBehaviour
 {
-    public static PopupManager S;
+    public static PopupManager S = null;
 
-    public List<Popup> popups;
+    public List<Popup> popups = new List<Popup>();
 
     private Button blank;
 
     private void Awake()
     {
         S = this;
-
-        DontDestroyOnLoad(this.gameObject);
 
         blank = transform.GetChild(0).GetComponent<Button>();
         blank.onClick.AddListener(CloseAllPopup);

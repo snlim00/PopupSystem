@@ -6,6 +6,8 @@ using TMPro;
 
 public class SettingPopup : Popup
 {
+    public static SettingPopup S = null;
+
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider sfxSlider;
 
@@ -13,8 +15,10 @@ public class SettingPopup : Popup
 
     [SerializeField] private Button creditBtn;
 
-    protected override void Init()
+    protected override void _Awake()
     {
+        S = this;
+
         //각 설정들의 값에 유저 데이터의 값 반영하기.
 
         bgmSlider.onValueChanged.AddListener(BGMSliderChangeValue);
@@ -27,7 +31,7 @@ public class SettingPopup : Popup
     {
         base._Start();
 
-        SceneChanger.S.settingPopup = this;
+       // SceneChanger.S.settingPopup = this;
 
         bgmSlider.value = SoundManager.S.bgmVolume;
         sfxSlider.value = SoundManager.S.sfxVolume;

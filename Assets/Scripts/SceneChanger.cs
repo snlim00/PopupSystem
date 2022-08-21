@@ -11,13 +11,16 @@ public class SceneChanger : MonoBehaviour
 
     private SceneEffectManager effectManager;
 
-    public SettingPopup settingPopup;
-
     private void Awake()
     {
         S = this;
 
         effectManager = FindObjectOfType<SceneEffectManager>();
+    }
+
+    private void Start()
+    {
+        
     }
 
     public void MainScene()
@@ -27,6 +30,6 @@ public class SceneChanger : MonoBehaviour
 
     public void OpenSettingPopup()
     {
-        settingPopup.OpenPopup();
+        SettingPopup.S.OpenPopup();
     }    
 }

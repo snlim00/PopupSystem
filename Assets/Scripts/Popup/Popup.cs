@@ -20,10 +20,10 @@ public abstract class Popup : MonoBehaviour
 
     private void Awake()
     {
-        Init();
+        _Awake();
     }
 
-    protected virtual void Init()
+    protected virtual void _Awake()
     {
         
     }
