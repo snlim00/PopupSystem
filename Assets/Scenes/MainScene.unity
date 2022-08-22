@@ -3156,12 +3156,12 @@ MonoBehaviour:
   jacket: {fileID: 1441878059}
   musicNameText: {fileID: 354306324}
   artistText: {fileID: 1312624622}
-  SpeedValue: {fileID: 984981939}
-  SpdLeftButton: {fileID: 884789333}
-  SpdRightButton: {fileID: 112353267}
-  DifficultyValue: {fileID: 634929095}
-  DifLeftButton: {fileID: 1164231878}
-  DifRightButton: {fileID: 340548884}
+  speedValue: {fileID: 984981939}
+  spdLeftButton: {fileID: 884789333}
+  spdRightButton: {fileID: 112353267}
+  difficultyValue: {fileID: 634929095}
+  difLeftButton: {fileID: 1164231878}
+  difRightButton: {fileID: 340548884}
 --- !u!1 &2102755977
 GameObject:
   m_ObjectHideFlags: 0
