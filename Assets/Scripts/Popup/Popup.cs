@@ -25,18 +25,17 @@ public abstract class Popup : MonoBehaviour
 
     protected virtual void _Awake()
     {
-        
+        PopupManager.S.popups.Add(this);
     }
 
     private void Start()
     {
+        Debug.Log("Base Start");
         _Start();
     }
 
     protected virtual void _Start()
     {
-        PopupManager.S.popups.Add(this);
-
         ClosePopup();
     }
 
@@ -49,7 +48,6 @@ public abstract class Popup : MonoBehaviour
 
     public virtual void ClosePopup()
     {
-        Debug.Log("ClosePopup");
         isEnable = false;
 
         gameObject.SetActive(false);

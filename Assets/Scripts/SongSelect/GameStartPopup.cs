@@ -16,8 +16,10 @@ public class GameStartPopup : Popup
     [SerializeField] private Button spdRightButton;
 
     [SerializeField] private TMP_Text difficultyValue;
-    [SerializeField] private Button difLeftButton;
     [SerializeField] private Button difRightButton;
+
+    [SerializeField] private Button closeButton;
+    [SerializeField] private Button gameStart;
     #endregion
 
     #region 해당 악곡의 정보
@@ -27,13 +29,16 @@ public class GameStartPopup : Popup
     private int selectedDifIndex = 0;
     #endregion
 
-    public float selectedSpeed = 1f; //해당 값은 유저 데이터의 speed값으로 변경되어야 함
+    [HideInInspector] public float selectedSpeed = 1f; //해당 값은 유저 데이터의 speed값으로 변경되어야 함
 
     private const float minSpeed = 0.1f;
-    private const float maxSpeed = 1f;
+    private const float maxSpeed = 2f;
+    private const float speedInterval = 0.1f;
 
     public void OpenGameStartPopup(in MusicListObject musicData)
     {
+        OpenPopup();
+
         levelName = musicData.levelName;
         difficulties = musicData.difficulties;
 
@@ -41,19 +46,70 @@ public class GameStartPopup : Popup
         musicNameText.text = musicData.musicNameText.text;
         artistText.text = musicData.artist.text;
         //유저 데이터에서 설정된 속도 값을 가져와서 적용시키기.
+        Debug.Log("Open Game Start Popup");
+    }
 
-        base.OpenPopup();
+    public override void ClosePopup()
+    {
+        base.ClosePopup();
+
+        Debug.Log("GameStartPopup Close");
     }
 
     protected override void _Awake()
     {
         base._Awake();
 
-        InitSpeedValue();
+        spdLeftButton.onClick.AddListener(delegate { SetSpeedValue(selectedSpeed - speedInterval); });
+        spdRightButton.onClick.AddListener(delegate { SetSpeedValue(selectedSpeed + speedInterval); });
+
+        difRightButton.onClick.AddListener(ChangeDifficulty);
+
+        closeButton.onClick.AddListener(ClosePopup);
+        gameStart.onClick.AddListener(GameStart);
+
+        SetSpeedValue(selectedSpeed);
     }
 
-    private void InitSpeedValue()
+    protected override void _Start()
     {
-        speedValue.text = selectedSpeed.ToString();
+        Debug.Log("Start");
+        base._Start();
+
+    }
+
+    private void SetSpeedValue(float value)
+    {
+        selectedSpeed = value;
+
+        if(selectedSpeed > maxSpeed)
+        {
+            selectedSpeed = maxSpeed;
+        }
+        else if(selectedSpeed < minSpeed)
+        {
+            selectedSpeed = minSpeed;
+        }
+
+        speedValue.text = selectedSpeed.ToString("f1");
+    }
+
+    private void ChangeDifficulty()
+    {
+        if(selectedDifIndex >= difficulties.Count - 1)
+        {
+            selectedDifIndex = 0;
+        }
+        else
+        {
+            selectedDifIndex += 1;
+        }
+
+        difficultyValue.text = difficulties[selectedDifIndex];
+    }
+
+    private void GameStart()
+    {
+        //asdf.GameStart(levelName, difficulties[selectedDifIndex]);
     }
 }

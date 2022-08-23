@@ -11,6 +11,8 @@ public class PopupManager : MonoBehaviour
 
     private Button blank;
 
+    public bool isEnable = false;
+
     private void Awake()
     {
         S = this;
@@ -40,7 +42,7 @@ public class PopupManager : MonoBehaviour
             if(popups[i].isEnable == true)
             {
                 enablePopupCount += 1;
-                Debug.Log(popups[i].gameObject.name);
+                //Debug.Log(popups[i].gameObject.name);
             }
         }
 
@@ -58,11 +60,18 @@ public class PopupManager : MonoBehaviour
 
     private void EnablePopupCanvas()
     {
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
+        blank.gameObject.SetActive(true);
+
+        isEnable = true;
     }
 
     private void DisablePopupCanvas()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        blank.gameObject.SetActive(false);
+
+        isEnable = false;
+        //Debug.Log("disable");
     }
 }

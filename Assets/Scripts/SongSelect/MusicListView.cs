@@ -32,7 +32,7 @@ public class MusicListView : MonoBehaviour
     private bool isMoveing = false;
     private Coroutine corMoveToMusic;
 
-    [SerializeField] private Button playButton;
+    [SerializeField] private Button[] playButton;
 
     [SerializeField] private GameStartPopup gameStartPopup;
 
@@ -40,17 +40,25 @@ public class MusicListView : MonoBehaviour
     {
         InstantiateAllMusicListObject();
 
-        playButton.onClick.AddListener(delegate { gameStartPopup.OpenGameStartPopup(selectedMusic); });
+        foreach (var play in playButton)
+        {
+            play.onClick.AddListener(delegate { gameStartPopup.OpenGameStartPopup(selectedMusic); });
+        }
     }
 
     private void Start()
     {
-        SelectSong(0);
+        SelectSong(musicList.Count / 2, false);
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            SelectSong(3);
+        }
         Scroll();
 
         if(Input.GetKeyDown(KeyCode.Space))
@@ -62,8 +70,12 @@ public class MusicListView : MonoBehaviour
     #region 스크롤 및 곡 선택
     private void Scroll()
     {
-        if (PopupManager.S.gameObject.activeSelf == true)
+        if (PopupManager.S.isEnable == true)
+        {
+            //StopSlide();
+            SetMousePos(out lastMousePos);
             return;
+        }
 
         //BlockBoundary();
 
@@ -125,7 +137,7 @@ public class MusicListView : MonoBehaviour
 
             SetMousePos(out lastMousePos);
 
-            Debug.Log("scroll");
+            //Debug.Log("scroll");
         }
     }
 
@@ -240,7 +252,7 @@ public class MusicListView : MonoBehaviour
         {
             float dis = center.transform.position.y - musicList[index].transform.position.y;
 
-            Debug.Log(dis);
+            //Debug.Log(dis);
 
             transform.Translate(Vector2.up * dis);
         }

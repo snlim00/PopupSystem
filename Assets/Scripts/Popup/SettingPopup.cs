@@ -17,6 +17,8 @@ public class SettingPopup : Popup
 
     protected override void _Awake()
     {
+        base._Awake();
+
         S = this;
 
         //각 설정들의 값에 유저 데이터의 값 반영하기.
@@ -35,6 +37,8 @@ public class SettingPopup : Popup
 
         bgmSlider.value = SoundManager.S.bgmVolume;
         sfxSlider.value = SoundManager.S.sfxVolume;
+
+        Debug.Log("Setting Start");
     }
 
 
@@ -57,6 +61,7 @@ public class SettingPopup : Popup
     private void CreditBtnClick()
     {
         //크레딧 연출
+        Debug.Log("Credit");
     }
     #endregion
 }
