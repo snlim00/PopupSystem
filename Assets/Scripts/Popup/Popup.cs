@@ -30,7 +30,6 @@ public abstract class Popup : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Base Start");
         _Start();
     }
 

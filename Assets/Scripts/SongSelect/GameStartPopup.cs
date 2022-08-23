@@ -78,6 +78,7 @@ public class GameStartPopup : Popup
 
     }
 
+    #region UI 버튼 함수
     private void SetSpeedValue(float value)
     {
         selectedSpeed = value;
@@ -112,4 +113,5 @@ public class GameStartPopup : Popup
     {
         //asdf.GameStart(levelName, difficulties[selectedDifIndex]);
     }
+    #endregion
 }
