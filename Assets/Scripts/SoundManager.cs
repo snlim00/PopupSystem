@@ -29,8 +29,15 @@ public class SoundManager : MonoBehaviour
 
         bgmSource = gameObject.AddComponent<AudioSource>();
         bgmSource.playOnAwake = false;
+    }
+
+    private void Start()
+    {
+        Debug.Log(UserData.S.sfxVolume);
 
         //각 볼륨들의 수치에 불러온 유저 데이터 적용하도록 하기.
+        sfxVolume = UserData.S.sfxVolume;
+        bgmVolume = UserData.S.bgmVolume;
     }
 
     public AudioSource PlaySFX(AudioClip clip, AudioSource source = null)
@@ -95,6 +102,7 @@ public class SoundManager : MonoBehaviour
         }
 
         //변경된 값이 유저 데이터에 반영될 수 있도록 하기
+        UserData.S.sfxVolume = sfxVolume;
     }
 
     public void SetBGMVolume(float value)
@@ -104,5 +112,6 @@ public class SoundManager : MonoBehaviour
         bgmSource.volume = bgmVolume;
 
         //변경된 값이 유저 데이터에 반영될 수 있도록 하기
+        UserData.S.bgmVolume = bgmVolume;
     }
 }

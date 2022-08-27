@@ -18,6 +18,7 @@ public class MusicListObject : MonoBehaviour
     private RectTransform infoRect;
 
     public Image jacket;
+    public Image jacketCover;
     public TMP_Text musicNameText;
     public TMP_Text artist;
     public TMP_Text stage;
@@ -71,8 +72,8 @@ public class MusicListObject : MonoBehaviour
         StartCoroutine(SetJacketSize(new Vector2(highlightSize.y, highlightSize.y), 0.15f));
         StartCoroutine(SetSize(highlightSize, 0.15f));
 
-        //difStars.SetActive(true);
-        asdf(0.14f);
+        difStars.SetActive(true);
+        //asdf(0.14f);
     }
 
     private IEnumerator asdf(float waitTime)
@@ -89,11 +90,15 @@ public class MusicListObject : MonoBehaviour
         RectTransform jacketRect = jacket.GetComponent<RectTransform>();
         Vector2 jacketStartSize = jacketRect.sizeDelta;
 
+        RectTransform jacketCover = this.jacketCover.GetComponent<RectTransform>();
+
         while (t < 1)
         {
             t += Time.deltaTime / duration;
 
             jacketRect.sizeDelta = Vector2.Lerp(jacketStartSize, jacketTargetSize, Utility.LerpValue(t, 1));
+
+            jacketCover.sizeDelta = jacketRect.sizeDelta;
 
             yield return null;
         }

@@ -29,8 +29,6 @@ public class GameStartPopup : Popup
     private int selectedDifIndex = 0;
     #endregion
 
-    [HideInInspector] public float selectedSpeed = 1f; //해당 값은 유저 데이터의 speed값으로 변경되어야 함
-
     private const float minSpeed = 0.1f;
     private const float maxSpeed = 2f;
     private const float speedInterval = 0.1f;
@@ -60,39 +58,37 @@ public class GameStartPopup : Popup
     {
         base._Awake();
 
-        spdLeftButton.onClick.AddListener(delegate { SetSpeedValue(selectedSpeed - speedInterval); });
-        spdRightButton.onClick.AddListener(delegate { SetSpeedValue(selectedSpeed + speedInterval); });
+        spdLeftButton.onClick.AddListener(delegate { SetSpeedValue(UserData.S.noteSpeed - speedInterval); });
+        spdRightButton.onClick.AddListener(delegate { SetSpeedValue(UserData.S.noteSpeed + speedInterval); });
 
         difRightButton.onClick.AddListener(ChangeDifficulty);
 
         closeButton.onClick.AddListener(ClosePopup);
         gameStart.onClick.AddListener(GameStart);
 
-        SetSpeedValue(selectedSpeed);
+        SetSpeedValue(UserData.S.noteSpeed);
     }
 
     protected override void _Start()
     {
-        Debug.Log("Start");
         base._Start();
-
     }
 
     #region UI 버튼 함수
     private void SetSpeedValue(float value)
     {
-        selectedSpeed = value;
+        UserData.S.noteSpeed = value;
 
-        if(selectedSpeed > maxSpeed)
+        if(UserData.S.noteSpeed > maxSpeed)
         {
-            selectedSpeed = maxSpeed;
+            UserData.S.noteSpeed = maxSpeed;
         }
-        else if(selectedSpeed < minSpeed)
+        else if(UserData.S.noteSpeed < minSpeed)
         {
-            selectedSpeed = minSpeed;
+            UserData.S.noteSpeed = minSpeed;
         }
 
-        speedValue.text = selectedSpeed.ToString("f1");
+        speedValue.text = UserData.S.noteSpeed.ToString("f1");
     }
 
     private void ChangeDifficulty()

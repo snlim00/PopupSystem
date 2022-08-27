@@ -35,10 +35,17 @@ public class SettingPopup : Popup
 
        // SceneChanger.S.settingPopup = this;
 
-        bgmSlider.value = SoundManager.S.bgmVolume;
-        sfxSlider.value = SoundManager.S.sfxVolume;
+        bgmSlider.value = UserData.S.bgmVolume;
+        sfxSlider.value = UserData.S.sfxVolume;
 
         Debug.Log("Setting Start");
+    }
+
+    public override void ClosePopup()
+    {
+        base.ClosePopup();
+
+        UserDataManager.S.WriteUserData();
     }
 
 

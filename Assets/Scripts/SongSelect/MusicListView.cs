@@ -14,8 +14,6 @@ public class MusicListView : MonoBehaviour
 
     [SerializeField] private GameObject center;
 
-    [SerializeField] private float interval = 50;
-
     public bool canScroll = true;
 
     public bool isScroll = false;
