@@ -25,7 +25,6 @@ public abstract class Popup : MonoBehaviour
 
     protected virtual void _Awake()
     {
-        PopupManager.S.popups.Add(this);
     }
 
     private void Start()
@@ -35,6 +34,7 @@ public abstract class Popup : MonoBehaviour
 
     protected virtual void _Start()
     {
+        PopupManager.S.popups.Add(this);
         ClosePopup();
     }
 

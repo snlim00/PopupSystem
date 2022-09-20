@@ -22,7 +22,7 @@ public class UserDataManager : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.S))
         {
-            WriteUserData();
+            SaveUserData();
         }
     }
 
@@ -43,7 +43,7 @@ public class UserDataManager : MonoBehaviour
         Debug.Log(UserData.S.bgmVolume);
     }
 
-    public void WriteUserData()
+    public void SaveUserData()
     {
         string json = JsonUtility.ToJson(UserData.S);
         string path = Application.dataPath + "/UserData.json";

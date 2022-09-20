@@ -21,7 +21,7 @@ public class SettingPopup : Popup
 
         S = this;
 
-        //°¢ ¼³Á¤µéÀÇ °ª¿¡ À¯Àú µ¥ÀÌÅÍÀÇ °ª ¹Ý¿µÇÏ±â.
+        //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ý¿ï¿½ï¿½Ï±ï¿½.
 
         bgmSlider.onValueChanged.AddListener(BGMSliderChangeValue);
         sfxSlider.onValueChanged.AddListener(SFXSliderChangeValue);
@@ -45,11 +45,11 @@ public class SettingPopup : Popup
     {
         base.ClosePopup();
 
-        UserDataManager.S.WriteUserData();
+        UserDataManager.S.SaveUserData();
     }
 
 
-    #region onValueChanged ÇÔ¼öµé.
+    #region onValueChanged ï¿½Ô¼ï¿½ï¿½ï¿½.
     private void BGMSliderChangeValue(float value)
     {
         SoundManager.S.SetBGMVolume(value);
@@ -62,12 +62,12 @@ public class SettingPopup : Popup
 
     private void PushNoticeValueChange(bool value)
     {
-        //value¸¦ À¯Àú µ¥ÀÌÅÍ¿¡ Àû¿ëÇÏ±â
+        //valueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
     }
 
     private void CreditBtnClick()
     {
-        //Å©·¹µ÷ ¿¬Ãâ
+        //Å©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Debug.Log("Credit");
     }
     #endregion

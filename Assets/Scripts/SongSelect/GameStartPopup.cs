@@ -6,7 +6,7 @@ using TMPro;
 
 public class GameStartPopup : Popup
 {
-    #region UI ¿ä¼Òµé
+    #region UI ï¿½ï¿½Òµï¿½
     [SerializeField] private Image jacket;
     [SerializeField] private TMP_Text musicNameText;
     [SerializeField] private TMP_Text artistText;
@@ -22,7 +22,7 @@ public class GameStartPopup : Popup
     [SerializeField] private Button gameStart;
     #endregion
 
-    #region ÇØ´ç ¾Ç°îÀÇ Á¤º¸
+    #region ï¿½Ø´ï¿½ ï¿½Ç°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private string levelName;
     private List<string> difficulties = new List<string>();
 
@@ -43,12 +43,14 @@ public class GameStartPopup : Popup
         jacket.sprite = musicData.jacket.sprite;
         musicNameText.text = musicData.musicNameText.text;
         artistText.text = musicData.artist.text;
-        //À¯Àú µ¥ÀÌÅÍ¿¡¼­ ¼³Á¤µÈ ¼Óµµ °ªÀ» °¡Á®¿Í¼­ Àû¿ë½ÃÅ°±â.
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½.
         Debug.Log("Open Game Start Popup");
     }
 
     public override void ClosePopup()
     {
+        UserDataManager.S.SaveUserData();
+
         base.ClosePopup();
 
         Debug.Log("GameStartPopup Close");
@@ -74,7 +76,7 @@ public class GameStartPopup : Popup
         base._Start();
     }
 
-    #region UI ¹öÆ° ÇÔ¼ö
+    #region UI ï¿½ï¿½Æ° ï¿½Ô¼ï¿½
     private void SetSpeedValue(float value)
     {
         UserData.S.noteSpeed = value;
